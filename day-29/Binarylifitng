@@ -1,0 +1,65 @@
+Decimal 13 → Binary: 1101
+            can be represent in form pow of 2 like -: 
+            
+            2^3+2^2+2^0
+            
+            
+            
+            (1)
+           /   \
+        (2)     (3)
+       /  \     /  \
+     (4)  (5) (6)  (7)
+    / \   / \  / \
+  (8)(9)(10)(11)(12)(13)
+
+
+
+Start at root (1)
+ └── Jump 2^3 → Node (8)
+      └── Jump 2^2 → Node (12)
+           └── Jump 2^0 → Node (13)
+
+
+
+
+lets take a grapgh= 1->2->3->4
+
+make a 2d matirx
+
+    2^i------>
+
+       0 1 2 3 4 5 6 
+    1  1 1 1 1 1 1 1    it means no matter what you put 2^i while you are on the node 1 you will be at node 1 only
+    2  1 1 1 1 1 1 1     simiarly on going 2^0 you will go to 1st node but rest with pow 1 2 or 3 will land you on 1 since they can surpass it
+    3  2 1 1 1 1 1 1 
+    4  3 2 1 1 1 1 1   
+    5
+    6
+    = j
+
+    for(int j=0;j<log(n);j+++){
+        for(int i=0;i<n;i++){
+            up[i][j]=up[up[i][j-1]][j-1];
+        }
+    }
+
+    //Binary lifting works by storing ancestors at powers of two distances.
+/*
+For each node, you keep:
+
+up[i][0] → immediate parent (2^0 = 1 step).
+
+up[i][1] → 2-step ancestor (2^1).
+
+up[i][2] → 4-step ancestor (2^2).
+
+up[i][3] → 8-step ancestor (2^3).
+
+… and so on.
+
+The maximum jump you’ll ever need is about the height of the tree. Since the height can be at most n, the largest power of two ≤ n is about log2(n).
+That’s why the outer loop runs up to log(n).
+
+*/
+Column-first filling → each column depends on the previous one, so you can’t skip ahead.    
