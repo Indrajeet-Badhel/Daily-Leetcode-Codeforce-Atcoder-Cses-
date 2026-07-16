@@ -16,8 +16,7 @@ public:
         for (int i = 0; i < n; i++) {
             if (r < i) r = i;
             while (r + 1 < n &&
-                   newNums[r + 1].first - newNums[r].first <= maxDiff &&
-                   newNums[r + 1].first - newNums[i].first <= maxDiff)
+                   newNums[r + 1].first - newNums[r].first <= maxDiff )
                 r++;
             st[i][0] = r;
         }
